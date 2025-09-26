@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>الرئيسية - متجري</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="products.html">المنتجات</a>
+        <a href="cart.html">سلة المشتريات</a>
+        <a href="register.html">تسجيل</a>
+        <!-- هذا الرابط -->
+      </nav>
+    </header>
+
+    <main>
+      <h1>أهلاً بك في متجري الإلكتروني</h1>
+      <p>أفضل المنتجات بين يديك</p>
+      <button onclick="location.href='products.html'">تسوق الآن</button>
+    </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const userData = JSON.parse(localStorage.getItem("loggedInUser"));
+        if (userData) {
+          const main = document.querySelector("main");
+          const welcome = document.createElement("p");
+          welcome.style.color = "green";
+          welcome.textContent = `مرحباً، ${userData.username} !`;
+          main.insertBefore(welcome, main.firstChild);
+        }
+      });
+    </script>
+
+    <footer>
+      <p>© 2025 جميع الحقوق محفوظة</p>
+    </footer>
+  </body>
+</html>
