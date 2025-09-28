@@ -1,39 +1,76 @@
+// منتجات تجريبية
 const products = [
-  { id: 1, name: "منتج 1", price: 100 },
-  { id: 2, name: "منتج 2", price: 150 },
-  { id: 3, name: "منتج 3", price: 200 },
+  {
+    id: 1,
+    name: "ساعة ذكية",
+    price: 150,
+    image: "images/watch.jpg",
+  },
+  {
+    id: 2,
+    name: "سماعة بلوتوث",
+    price: 80,
+    image: "images/headphones.jpg",
+  },
+  {
+    id: 3,
+    name: "لاب توب",
+    price: 2500,
+    image: "images/laptop.jpg",
+  },
 ];
 
-function addToCart(id) {
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  const product = products.find((p) => p.id === id);
-  if (!product) return;
-
-  const existing = cart.find((item) => item.id === id);
-  if (existing) {
-    existing.quantity++;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert("تم إضافة المنتج إلى سلة المشتريات");
-}
-
-function showProducts() {
-  const container = document.getElementById("products-container");
+// عرض المنتجات
+function renderProducts() {
+  const container = document.getElementById("productsContainer");
   container.innerHTML = "";
+
   products.forEach((product) => {
     const div = document.createElement("div");
-    div.style.border = "1px solid #ccc";
-    div.style.padding = "10px";
-    div.style.marginBottom = "10px";
+    div.classList.add("product-card");
     div.innerHTML = `
-            <h3>${product.name}</h3>
-            <p>السعر: ${product.price} جنيه</p>
-            <button onclick="addToCart(${product.id})">أضف إلى السلة</button>
-        `;
+      <img src="${product.image}" alt="${product.name}" width="200">
+      <h3>${product.name}</h3>
+      <p>السعر: ${product.price} ريال</p>
+      <button onclick='addToCart(${JSON.stringify(
+        product
+      )})'>أضف إلى السلة</button>
+    `;
     container.appendChild(div);
   });
 }
 
-document.addEventListener("DOMContentLoaded", showProducts);
+// إضافة للسلة
+function addToCart(product) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push(product);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  alert(`تمت إضافة ${product.name} إلى السلة`);
+}
+
+// تحديث العداد
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartCountElem = document.getElementById("cartCount");
+  if (cartCountElem) {
+    cartCountElem.textContent = cart.length;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderProducts();
+  updateCartCount();
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!user) {
+    // لو مفيش مستخدم مسجل، يرجّع على صفحة الدخول
+    window.location.href = "login.html";
+    return;
+  }
+
+  // المستخدم موجود، نعرض المنتجات
+  renderProducts();
+  updateCartCount();
+});

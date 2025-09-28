@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <title>تسجيل دخول - متجري</title>
+    <title>تسجيل الدخول</title>
     <link rel="stylesheet" href="style.css" />
     <script src="login.js" defer></script>
   </head>
@@ -10,32 +10,41 @@
     <header>
       <nav>
         <a href="index.html">الرئيسية</a>
-        <a href="register.html">تسجيل مستخدم</a>
-        <a href="login.html">تسجيل دخول</a>
+        <a href="register.html">تسجيل</a>
+        <a href="login.html">دخول</a>
+        <!-- هنا تضيف رابط السلة -->
+        <a href="cart.html" class="cart-link">
+          🛒 السلة (<span id="cartCount">0</span>)
+        </a>
       </nav>
     </header>
 
     <main>
-      <h1>تسجيل دخول</h1>
-      <form id="loginForm">
-        <label for="email">البريد الإلكتروني:</label><br />
-        <input type="email" id="email" name="email" required /><br /><br />
+      <section class="form-container">
+        <h2>تسجيل الدخول</h2>
+        <form id="loginForm">
+          <label for="loginEmail">البريد الإلكتروني</label>
+          <input type="email" id="loginEmail" required />
 
-        <label for="password">كلمة المرور:</label><br />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          required
-        /><br /><br />
+          <label for="loginPassword">كلمة المرور</label>
+          <input type="password" id="loginPassword" required />
 
-        <button type="submit">دخول</button>
-      </form>
-      <p id="loginMessage" style="color: red"></p>
+          <button type="submit">دخول</button>
+          <p id="loginMessage" class="message"></p>
+        </form>
+      </section>
     </main>
 
     <footer>
-      <p>© 2025 جميع الحقوق محفوظة</p>
+      <p>© 2025 جميع الحقوق محفوظة - متجري</p>
+
+      <div class="social-links">
+        <a href="https://www.facebook.com/YourPage" target="_blank">facebook</a>
+        | <a href="https://wa.me/201234567890" target="_blank">whatsapp</a> |
+        <a href="https://www.instagram.com/YourPage" target="_blank">
+          instegram</a
+        >
+      </div>
     </footer>
   </body>
 </html>

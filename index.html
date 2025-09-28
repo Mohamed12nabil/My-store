@@ -2,40 +2,35 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <title>الرئيسية - متجري</title>
+    <title>متجري</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
       <nav>
-        <a href="index.html">الرئيسية</a>
-        <a href="products.html">المنتجات</a>
-        <a href="cart.html">سلة المشتريات</a>
+        <a href="index.html" class="active">الرئيسية</a>
         <a href="register.html">تسجيل</a>
-        <!-- هذا الرابط -->
+        <a href="login.html">دخول</a>
+        <a href="cart.html" class="cart-link">
+          🛒 السلة (<span id="cartCount">0</span>)
+        </a>
       </nav>
     </header>
 
     <main>
-      <h1>أهلاً بك في متجري الإلكتروني</h1>
-      <p>أفضل المنتجات بين يديك</p>
-      <button onclick="location.href='products.html'">تسوق الآن</button>
+      <section class="hero">
+        <h1>مرحبًا بك في متجري الإلكتروني</h1>
+        <p>سجّل دخولك أو أنشئ حساب جديد لتبدأ التسوق!</p>
+      </section>
     </main>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const userData = JSON.parse(localStorage.getItem("loggedInUser"));
-        if (userData) {
-          const main = document.querySelector("main");
-          const welcome = document.createElement("p");
-          welcome.style.color = "green";
-          welcome.textContent = `مرحباً، ${userData.username} !`;
-          main.insertBefore(welcome, main.firstChild);
-        }
-      });
-    </script>
 
     <footer>
-      <p>© 2025 جميع الحقوق محفوظة</p>
+      <p>© 2025 جميع الحقوق محفوظة - متجري</p>
+        <div class="social-links">
+        <a href="https://www.facebook.com/YourPage" target="_blank">facebook</a>
+        | <a href="https://wa.me/201234567890" target="_blank">whatsapp</a> |
+        <a href="https://www.instagram.com/YourPage" target="_blank">
+          instegram</a>
     </footer>
   </body>
 </html>
